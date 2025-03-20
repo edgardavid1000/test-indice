@@ -1,0 +1,8 @@
+baseURL = "/"
+languageCode = "es-es"
+title = "Enlaces para profesionales de networking"
+theme = ""
+
+[params]
+  description = "Links para profesionales de networking"
+  
