@@ -1,0 +1,14 @@
+{
+  "name": "networking-links",
+  "version": "1.0.0",
+  "description": "Professional networking links page",
+  "main": "index.js",
+  "scripts": {
+    "build": "hugo --minify"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "postcss-cli": "^10.1.0"
+  }
+}
