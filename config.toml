@@ -1,12 +1,11 @@
 baseURL = "/"
-languageCode = "es-es"
-title = "Links Profesionales para Networking"
+languageCode = "es"
+title = "Networking Professional Links"
 theme = ""
 disableKinds = ["taxonomy", "taxonomyTerm"]
 
 [params]
-  description = "Enlaces profesionales para networking y herramientas útiles"
-  author = "Tu Nombre"
-  mainColor = "#2E5090"
-  secondaryColor = "#F5F5F5"
-  profileImage = "https://via.placeholder.com/150"
+  description = "Herramientas profesionales para networking"
+  author = "Networking Professional"
+  mainImage = "https://cdn.pixabay.com/photo/2018/05/08/08/44/artificial-intelligence-3382507_960_720.jpg"
+  favicon = "https://cdn.pixabay.com/photo/2016/12/18/13/45/download-1915753_960_720.png"
