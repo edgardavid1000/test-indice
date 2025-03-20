@@ -1,8 +1,12 @@
 baseURL = "/"
 languageCode = "es-es"
-title = "Enlaces para profesionales de networking"
+title = "Links Profesionales para Networking"
 theme = ""
+disableKinds = ["taxonomy", "taxonomyTerm"]
 
 [params]
-  description = "Links para profesionales de networking"
-  
+  description = "Enlaces profesionales para networking y herramientas útiles"
+  author = "Tu Nombre"
+  mainColor = "#2E5090"
+  secondaryColor = "#F5F5F5"
+  profileImage = "https://via.placeholder.com/150"
