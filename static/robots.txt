@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow crawling of admin or development areas
+Disallow: /admin/
+Disallow: /dev/
+
+# Sitemap location
+Sitemap: /sitemap.xml
