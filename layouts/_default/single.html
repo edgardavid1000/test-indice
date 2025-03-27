@@ -1,0 +1,63 @@
+{{ define "main" }}
+<article>
+    <h1 class="content-title">{{ .Title }}</h1>
+    <div class="content-body">
+        {{ .Content }}
+    </div>
+
+    <!-- Formulario de Netlify -->
+    <form name="comentarios" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="form-netlify">
+        <!-- Campo oculto requerido por Netlify -->
+        <input type="hidden" name="form-name" value="comentarios" />
+
+        <!-- Campo Honeypot para engañar a los bots -->
+        <p class="hidden-field">
+            <label>No llenar si eres humano: <input name="bot-field" /></label>
+        </p>
+
+        <!-- Campos visibles del formulario -->
+        <p>
+            <label for="name">Tu Nombre:</label>
+            <input type="text" id="name" name="name" required />
+        </p>
+        <p>
+            <label for="email">Tu Email:</label>
+            <input type="email" id="email" name="email" required />
+        </p>
+        <p>
+            <label for="message">Tu Comentario:</label>
+            <textarea id="message" name="message" required></textarea>
+        </p>
+
+        <!-- Campo opcional: Asunto (si quieres categorizar) -->
+        <!--
+        <p>
+            <label for="subject">Asunto:</label>
+            <input type="text" id="subject" name="subject" />
+        </p>
+        -->
+
+        <!-- Campo opcional: Rating (ejemplo con select) -->
+        <!--
+        <p>
+            <label for="rating">Valoración:</label>
+            <select name="rating" id="rating">
+                <option value="">--Elige una opción--</option>
+                <option value="5">Excelente</option>
+                <option value="4">Bueno</option>
+                <option value="3">Regular</option>
+                <option value="2">Malo</option>
+                <option value="1">Muy Malo</option>
+            </select>
+        </p>
+        -->
+
+        <!-- Botón de envío -->
+        <p>
+            <button type="submit">Enviar Comentario</button>
+        </p>
+    </form>
+    <!-- Fin del Formulario de Netlify -->
+
+</article>
+{{ end }}
