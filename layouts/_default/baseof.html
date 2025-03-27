@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Title }}</title>
-    <meta name="description" content="{{ .Description }}">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}">
     <link rel="icon" href="{{ .Site.Params.favicon }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
@@ -14,8 +14,10 @@
             --background-color: #f8fafc;
             --text-color: #1e293b;
             --card-background: #ffffff;
+            --input-border-color: #cbd5e1;
+            --input-focus-border-color: var(--primary-color);
         }
-        
+
         body {
             font-family: 'Roboto', sans-serif;
             background-color: var(--background-color);
@@ -26,19 +28,20 @@
             flex-direction: column;
             min-height: 100vh;
         }
-        
+
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 2rem 1rem;
             flex-grow: 1;
         }
-        
+
+        /* Estilos de Profile (index.html) */
         .profile {
             text-align: center;
             margin-bottom: 2rem;
         }
-        
+
         .profile-image {
             width: 100px;
             height: 100px;
@@ -47,25 +50,26 @@
             margin-bottom: 1rem;
             border: 3px solid var(--primary-color);
         }
-        
+
         .profile-title {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
         }
-        
+
         .profile-description {
             font-size: 1rem;
             color: #64748b;
             margin-bottom: 1.5rem;
         }
-        
+
+        /* Estilos de Links (index.html) */
         .links-container {
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
-        
+
         .link-card {
             background-color: var(--card-background);
             border-radius: 8px;
@@ -78,32 +82,122 @@
             align-items: center;
             justify-content: space-between;
         }
-        
+
         .link-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-        
+
         .link-icon {
             width: 24px;
             height: 24px;
             margin-right: 1rem;
+            flex-shrink: 0; /* Evita que el icono se encoja */
         }
-        
+
         .link-title {
             font-weight: 500;
             flex-grow: 1;
         }
-        
+
         .link-arrow {
             color: var(--primary-color);
+            flex-shrink: 0; /* Evita que la flecha se encoja */
         }
-        
+
+        /* Estilos de Contenido General (single.html) */
+        .content-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .content-body h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary-color);
+        }
+         .content-body p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+         }
+
+        /* Estilos del Formulario (single.html) */
+        .form-netlify {
+            background-color: var(--card-background);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        .form-netlify p {
+            margin-bottom: 1rem;
+        }
+        .form-netlify label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .form-netlify input[type="text"],
+        .form-netlify input[type="email"],
+        .form-netlify textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--input-border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box; /* Asegura que padding no aumente el tamaño total */
+            transition: border-color 0.3s ease;
+        }
+        .form-netlify input[type="text"]:focus,
+        .form-netlify input[type="email"]:focus,
+        .form-netlify textarea:focus {
+            outline: none;
+            border-color: var(--input-focus-border-color);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2); /* Anillo de foco sutil */
+        }
+        .form-netlify textarea {
+            min-height: 120px;
+            resize: vertical; /* Permite redimensionar verticalmente */
+        }
+        .form-netlify button[type="submit"] {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-netlify button[type="submit"]:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Estilo para ocultar el campo honeypot */
+        .hidden-field {
+            position: absolute;
+            left: -5000px; /* Mover fuera de la pantalla */
+            /* O alternativamente:
+            opacity: 0;
+            pointer-events: none;
+            height: 0;
+            width: 0;
+            */
+        }
+
+
+        /* Estilos del Footer */
         .footer {
             text-align: center;
             padding: 1.5rem;
             font-size: 0.875rem;
             color: #64748b;
+            margin-top: 2rem; /* Añade espacio sobre el footer */
         }
     </style>
 </head>
