@@ -3,4 +3,4 @@ Disallow: /admin/
 Disallow: /dev/
 
 # Sitemap location
-Sitemap: https://your-actual-domain.com/sitemap.xml
+Sitemap: https://test-indice.netlify.app/sitemap.xml
