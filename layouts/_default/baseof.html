@@ -40,7 +40,7 @@
         .profile {
             text-align: center;
             margin-bottom: 2rem;
-            position: relative; /* Añadido para posicionamiento relativo */
+            position: relative;
         }
 
         .profile-image {
@@ -69,14 +69,14 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            position: relative; /* Añadido para posicionamiento relativo */
-            z-index: 2; /* Asegura que los enlaces estén por encima del carrusel */
+            position: relative;
+            z-index: 2;
         }
 
         .link-card {
             background-color: var(--card-background);
             border-radius: 8px;
-            padding: 0.5rem; /* Se redujo el padding para acortar el botón */
+            padding: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
@@ -91,7 +91,6 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
-        /* General link icon style */
         .link-icon {
             width: 24px;
             height: 24px;
@@ -125,10 +124,10 @@
             margin-bottom: 0.8rem;
             color: var(--secondary-color);
         }
-         .content-body p {
+        .content-body p {
             line-height: 1.6;
             margin-bottom: 1rem;
-         }
+        }
 
         /* Estilos del Formulario (single.html) */
         .form-netlify {
@@ -197,13 +196,13 @@
             margin-top: 2rem;
         }
 
-        /* --- Estilos actualizados del Carrusel Circular (ruleta) de Iconos --- */
+        /* Estilos del Carrusel Circular */
         .rotary-container {
             position: relative;
             width: 250px;
             height: 250px;
-            margin: 2rem auto; /* Modificado para agregar espaciado superior e inferior */
-            opacity: 0.7; /* Reduce la opacidad para mejor integración visual */
+            margin: 2rem auto; /* Centrado horizontal y espaciado vertical */
+            opacity: 0.7;
         }
         .icons-rotary {
             position: absolute;
@@ -218,20 +217,18 @@
             position: absolute;
             width: 40px;
             height: 40px;
-            top: 50%;
-            left: 50%;
-            transform-origin: 0 -100px;
+            top: 0;
+            left: 0;
+            transform-origin: center;
         }
         .rotary-item svg {
-            color: var(--primary-color); /* Color consistente con el tema */
-            filter: drop-shadow(0 0 3px rgba(37, 99, 235, 0.3)); /* Sombra suave */
+            color: var(--primary-color);
+            filter: drop-shadow(0 0 3px rgba(37, 99, 235, 0.3));
         }
         @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        /* --- Fin Carrusel Circular --- */
-
     </style>
 </head>
 <body>
