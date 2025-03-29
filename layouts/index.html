@@ -91,6 +91,12 @@
     </a>
 </div>
 
+<!-- Selector de animación -->
+<div class="animation-selector">
+    <button id="linear-animation" class="animation-button active">Animación Lineal</button>
+    <button id="wheel-animation" class="animation-button">Animación Ruleta</button>
+</div>
+
 <script>
 // Información de los iconos y sus enlaces
 const iconData = [
@@ -132,38 +138,100 @@ const iconData = [
     }
 ];
 
-function initializeCarousel() {
+// Variables para controlar el estado de animación
+let currentAnimation = 'linear';
+let animationActive = true;
+
+// Inicializar animación lineal
+function initializeLinearCarousel() {
     const carouselTrack = document.getElementById('carousel-track');
     const containerWidth = document.querySelector('.icons-carousel').offsetWidth;
     
-    // Crea un conjunto de iconos con suficiente amplitud para cubrir dos veces el ancho del contenedor
+    // Limpiamos cualquier contenido previo
+    carouselTrack.innerHTML = '';
+    
+    // Creamos el conjunto principal de iconos
     let iconsHTML = '';
+    iconData.forEach(icon => {
+        iconsHTML += `<a href="${icon.url}" class="carousel-icon-link" target="_blank" tabindex="-1">${icon.svg}</a>`;
+    });
     
-    // Repetir los iconos suficientes veces para garantizar que cubran el ancho del carrusel
-    const repetitions = Math.ceil((containerWidth * 2) / (70 * iconData.length)) + 1;
+    // Duplicamos el conjunto de iconos exactamente una vez para crear el loop perfecto
+    carouselTrack.innerHTML = iconsHTML + iconsHTML;
     
-    for (let i = 0; i < repetitions; i++) {
-        iconData.forEach(icon => {
-            iconsHTML += `<a href="${icon.url}" class="carousel-icon-link" target="_blank" tabindex="-1">${icon.svg}</a>`;
-        });
+    // Calculamos el ancho total del conjunto de iconos
+    const iconSetWidth = carouselTrack.scrollWidth / 2;
+    
+    // Aplicamos el estilo para la animación lineal
+    document.documentElement.style.setProperty('--animation-duration', `${iconSetWidth / 50}s`);
+    
+    // Establecemos las clases apropiadas
+    carouselTrack.className = 'carousel-track-inner linear-animation';
+    document.querySelector('.icons-carousel').className = 'icons-carousel linear-mode';
+}
+
+// Inicializar animación de ruleta
+function initializeWheelCarousel() {
+    const carouselTrack = document.getElementById('carousel-track');
+    
+    // Limpiamos cualquier contenido previo y cambiamos la clase
+    carouselTrack.innerHTML = '';
+    carouselTrack.className = 'carousel-track-inner wheel-animation';
+    document.querySelector('.icons-carousel').className = 'icons-carousel wheel-mode';
+    
+    // Creamos los iconos para la ruleta
+    const totalIcons = iconData.length;
+    const angleIncrement = 360 / totalIcons;
+    
+    iconData.forEach((icon, index) => {
+        const angle = index * angleIncrement;
+        const iconElement = document.createElement('a');
+        iconElement.href = icon.url;
+        iconElement.className = 'carousel-icon-link wheel-icon';
+        iconElement.setAttribute('target', '_blank');
+        iconElement.setAttribute('tabindex', '-1');
+        iconElement.style.transform = `rotate(${angle}deg) translateY(-120px) rotate(-${angle}deg)`;
+        iconElement.innerHTML = icon.svg;
+        carouselTrack.appendChild(iconElement);
+    });
+}
+
+// Función para cambiar entre animaciones
+function toggleAnimation(animationType) {
+    if (currentAnimation === animationType) return;
+    
+    currentAnimation = animationType;
+    
+    // Actualizar botones
+    document.querySelectorAll('.animation-button').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.getElementById(`${animationType}-animation`).classList.add('active');
+    
+    // Inicializar la animación correspondiente
+    if (animationType === 'linear') {
+        initializeLinearCarousel();
+    } else {
+        initializeWheelCarousel();
     }
-    
-    carouselTrack.innerHTML = iconsHTML;
-    
-    // Ajustar el ancho y la animación para crear un bucle perfecto
-    const trackWidth = carouselTrack.scrollWidth;
-    const iconWidth = trackWidth / (iconData.length * repetitions);
-    const cloneCount = Math.ceil(containerWidth / iconWidth);
-    
-    // La animación funciona moviendo exactamente la mitad del contenido
-    // Esto garantiza que cuando termine la primera mitad, la segunda mitad
-    // estará exactamente en la misma posición, creando un loop perfecto
-    document.documentElement.style.setProperty('--icon-track-width', `${trackWidth}px`);
 }
 
 // Inicializar el carrusel cuando la página termine de cargar
-window.addEventListener('load', initializeCarousel);
+window.addEventListener('load', () => {
+    initializeLinearCarousel();
+    
+    // Configurar los botones de cambio de animación
+    document.getElementById('linear-animation').addEventListener('click', () => toggleAnimation('linear'));
+    document.getElementById('wheel-animation').addEventListener('click', () => toggleAnimation('wheel'));
+});
+
 // Reinicializar si cambia el tamaño de la ventana
-window.addEventListener('resize', initializeCarousel);
+window.addEventListener('resize', () => {
+    if (currentAnimation === 'linear') {
+        initializeLinearCarousel();
+    } else {
+        initializeWheelCarousel();
+    }
+});
 </script>
 {{ end }}
