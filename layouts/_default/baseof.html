@@ -205,13 +205,26 @@
             width: 100%;
             max-width: 600px; /* Igual al contenedor principal */
             margin-bottom: 2rem;
+            /* Optional: Add a subtle fade effect at the edges */
+            /* -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); */
+            /* mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); */
         }
 
         .icons-wrapper {
             display: flex;
+            /* Add white-space: nowrap to prevent potential wrapping issues */
+            white-space: nowrap;
+            /* Add will-change to hint browser about upcoming transform */
+            will-change: transform;
             animation: scroll 20s linear infinite;
             align-items: center; /* Asegura que los iconos estén a la misma altura */
         }
+
+        /* Add pause on hover */
+        .icons-carousel:hover .icons-wrapper {
+            animation-play-state: paused;
+        }
+
 
         .icons-wrapper .link-icon {
             width: 24px;
@@ -225,7 +238,11 @@
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(-50%); /* Mueve la mitad del contenedor para el bucle */
+                /* This translates the wrapper exactly half its width to the left. */
+                /* Since the wrapper contains two identical sets of icons, */
+                /* this brings the start of the second set perfectly to where */
+                /* the first set started, creating the seamless loop. */
+                transform: translateX(-50%);
             }
         }
     </style>
