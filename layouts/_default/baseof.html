@@ -196,11 +196,12 @@
             margin-top: 2rem;
         }
 
-        /* Nuevo estilo para animación de iconos */
+        /* Estilos corregidos para animación de iconos */
         .sliding-icons-container {
             position: relative;
             height: 80px;
             width: 100%;
+            max-width: 600px;
             margin: 2rem auto;
             overflow: hidden;
             opacity: 0.7;
@@ -212,7 +213,7 @@
             height: 40px;
             top: 50%;
             transform: translateY(-50%);
-            animation: slideIcon 27s infinite linear; /* 9 iconos x 3 segundos cada uno */
+            animation: slideIcon 27s infinite linear;
             opacity: 0;
         }
         
@@ -221,10 +222,10 @@
             filter: drop-shadow(0 0 3px rgba(37, 99, 235, 0.3));
         }
         
-        /* Crear animación de desplazamiento para cada icono */
+        /* Animación corregida para alinearse con los recuadros */
         @keyframes slideIcon {
             0%, 100% { 
-                transform: translate(120%, -50%);
+                transform: translate(calc(100% + 40px), -50%);
                 opacity: 0;
             }
             3%, 8% { 
@@ -232,7 +233,7 @@
                 opacity: 1;
             }
             11% { 
-                transform: translate(-120%, -50%); 
+                transform: translate(calc(-100% - 40px), -50%); 
                 opacity: 0;
             }
             11.1%, 100% { 
