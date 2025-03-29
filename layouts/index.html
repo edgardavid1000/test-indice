@@ -72,35 +72,29 @@
     </a>
 </div>
 
-<!-- Nueva animación de previews de sitios web en línea -->
-<div class="sliding-icons-container" aria-hidden="true">
-    <div class="sliding-icon">
-        <iframe src="https://test-cualesmiip.netlify.app"></iframe>
-    </div>
-    <div class="sliding-icon">
-        <iframe src="https://test-grafico.netlify.app"></iframe>
-    </div>
-    <div class="sliding-icon">
-        <iframe src="https://test-relojdespertador.netlify.app"></iframe>
-    </div>
-    <div class="sliding-icon">
-        <iframe src="https://test-horamundial.netlify.app"></iframe>
-    </div>
-    <div class="sliding-icon">
-        <iframe src="https://test-delegaciondns.netlify.app"></iframe>
-    </div>
-    <div class="sliding-icon">
-        <iframe src="https://test-medidordevelocidad.netlify.app"></iframe>
-    </div>
-    <div class="sliding-icon">
-        <iframe src="https://test-macaddresslookup.netlify.app"></iframe>
-    </div>
-    <div class="sliding-icon">
-        <iframe src="https://test-calculadoraderedes.netlify.app/"></iframe>
-    </div>
-    <div class="sliding-icon">
-        <iframe src="/comentarios"></iframe>
-    </div>
+<!-- Contenedor de preview (se muestra uno a la vez en bucle infinito) -->
+<div class="preview-container" style="margin:2rem auto; max-width:600px;">
+    <iframe id="preview-frame" src="https://test-cualesmiip.netlify.app" style="width:100%; height:500px; border:none;"></iframe>
 </div>
+
+<script>
+  const previewUrls = [
+    "https://test-cualesmiip.netlify.app",
+    "https://test-grafico.netlify.app",
+    "https://test-relojdespertador.netlify.app",
+    "https://test-horamundial.netlify.app",
+    "https://test-delegaciondns.netlify.app",
+    "https://test-medidordevelocidad.netlify.app",
+    "https://test-macaddresslookup.netlify.app",
+    "https://test-calculadoraderedes.netlify.app/",
+    "/comentarios"
+  ];
+  let currentIndex = 0;
+  setInterval(() => {
+    currentIndex = (currentIndex + 1) % previewUrls.length;
+    document.getElementById('preview-frame').src = previewUrls[currentIndex];
+  }, 5000);
+</script>
 {{ end }}
+
 
