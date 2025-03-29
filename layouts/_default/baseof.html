@@ -81,6 +81,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative; /* Para posicionamiento relativo del icono */
+            overflow: hidden; /* Para ocultar el icono cuando se sale de los límites */
         }
 
         .link-card:hover {
@@ -93,7 +95,39 @@
             height: 24px;
             margin-right: 1rem;
             flex-shrink: 0; /* Evita que el icono se encoja */
+            position: relative; /* Para la animación */
+            animation: moveIcon 3s linear infinite; /* Aplicamos la animación */
         }
+
+        @keyframes moveIcon {
+            0% {
+                transform: translateX(30px);
+                opacity: 0;
+            }
+            10% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            90% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+        }
+
+        /* Cada icono tendrá un retraso diferente para que la animación no sea simultánea */
+        .link-card:nth-child(1) .link-icon { animation-delay: 0s; }
+        .link-card:nth-child(2) .link-icon { animation-delay: 0.3s; }
+        .link-card:nth-child(3) .link-icon { animation-delay: 0.6s; }
+        .link-card:nth-child(4) .link-icon { animation-delay: 0.9s; }
+        .link-card:nth-child(5) .link-icon { animation-delay: 1.2s; }
+        .link-card:nth-child(6) .link-icon { animation-delay: 1.5s; }
+        .link-card:nth-child(7) .link-icon { animation-delay: 1.8s; }
+        .link-card:nth-child(8) .link-icon { animation-delay: 2.1s; }
+        .link-card:nth-child(9) .link-icon { animation-delay: 2.4s; }
 
         .link-title {
             font-weight: 500;
