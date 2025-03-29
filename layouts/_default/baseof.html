@@ -196,39 +196,60 @@
             margin-top: 2rem;
         }
 
-        /* Estilos del Carrusel Circular */
-        .rotary-container {
+        /* Nuevo estilo para animación de iconos */
+        .sliding-icons-container {
             position: relative;
-            width: 250px;
-            height: 250px;
-            margin: 2rem auto; /* Centrado horizontal y espaciado vertical */
+            height: 80px;
+            width: 100%;
+            margin: 2rem auto;
+            overflow: hidden;
             opacity: 0.7;
         }
-        .icons-rotary {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            transform-origin: center;
-            animation: rotate 20s linear infinite;
-        }
-        .rotary-item {
+        
+        .sliding-icon {
             position: absolute;
             width: 40px;
             height: 40px;
-            top: 0;
-            left: 0;
-            transform-origin: center;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: slideIcon 27s infinite linear; /* 9 iconos x 3 segundos cada uno */
+            opacity: 0;
         }
-        .rotary-item svg {
+        
+        .sliding-icon svg {
             color: var(--primary-color);
             filter: drop-shadow(0 0 3px rgba(37, 99, 235, 0.3));
         }
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        
+        /* Crear animación de desplazamiento para cada icono */
+        @keyframes slideIcon {
+            0%, 100% { 
+                transform: translate(120%, -50%);
+                opacity: 0;
+            }
+            3%, 8% { 
+                transform: translate(0, -50%);
+                opacity: 1;
+            }
+            11% { 
+                transform: translate(-120%, -50%); 
+                opacity: 0;
+            }
+            11.1%, 100% { 
+                opacity: 0; 
+            }
         }
+        
+        /* Aplicar retardo a cada icono */
+        .sliding-icon:nth-child(1) { animation-delay: 0s; }
+        .sliding-icon:nth-child(2) { animation-delay: 3s; }
+        .sliding-icon:nth-child(3) { animation-delay: 6s; }
+        .sliding-icon:nth-child(4) { animation-delay: 9s; }
+        .sliding-icon:nth-child(5) { animation-delay: 12s; }
+        .sliding-icon:nth-child(6) { animation-delay: 15s; }
+        .sliding-icon:nth-child(7) { animation-delay: 18s; }
+        .sliding-icon:nth-child(8) { animation-delay: 21s; }
+        .sliding-icon:nth-child(9) { animation-delay: 24s; }
     </style>
 </head>
 <body>
