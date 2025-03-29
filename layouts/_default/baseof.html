@@ -81,6 +81,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            max-width: 100%; /* Ajustar el ancho máximo */
         }
 
         .link-card:hover {
@@ -105,11 +106,15 @@
         .link-title {
             font-weight: 500;
             flex-grow: 1;
+            white-space: nowrap; /* Evitar que el texto se rompa */
+            overflow: hidden; /* Ocultar texto que desborda */
+            text-overflow: ellipsis; /* Agregar ... si el texto es muy largo */
         }
 
         .link-arrow {
             color: var(--primary-color);
             flex-shrink: 0; /* Evita que la flecha se encoja */
+            margin-left: 0.5rem; /* Espacio entre texto y flecha */
         }
 
         /* Estilos de Contenido General (single.html) */
@@ -200,59 +205,63 @@
             margin-top: 2rem; /* Añade espacio sobre el footer */
         }
 
-        /* --- Estilos para el carrusel de iconos --- */
+        /* --- Nuevo carrusel circular --- */
         .icons-carousel {
-            overflow: hidden;
+            position: relative;
             width: 100%;
-            max-width: 600px; /* Igual al contenedor principal */
-            margin-bottom: 2rem;
-             /* Optional fade effect */
-            /* -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); */
-            /* mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); */
+            height: 80px;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            overflow: hidden;
         }
 
-        .icons-wrapper {
+        .carousel-track {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             display: flex;
-            /* Ensure items don't wrap */
-            white-space: nowrap;
-            /* Hint browser for optimization */
-            will-change: transform;
-            /* The animation */
-            animation: scroll 20s linear infinite;
-            /* Align items vertically if needed (shouldn't be necessary with identical SVGs) */
-            /* align-items: center; */
+            align-items: center;
         }
 
-        /* Pause animation on hover */
-        .icons-carousel:hover .icons-wrapper {
+        .carousel-track-inner {
+            display: flex;
+            position: absolute;
+            left: 0;
+            animation: scroll 20s linear infinite;
+            width: auto;
+        }
+
+        .carousel-icon-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            flex-shrink: 0;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-icon-link:hover {
+            transform: scale(1.1);
+        }
+
+        /* Pausa animación al pasar el ratón */
+        .icons-carousel:hover .carousel-track-inner {
             animation-play-state: paused;
         }
-
-        /* Style the LINK (<a>) within the carousel */
-        .carousel-icon-link {
-            display: inline-flex; /* Use inline-flex for the link */
-            align-items: center; /* Vertically center SVG inside link */
-            justify-content: center; /* Horizontally center SVG (optional) */
-            flex-shrink: 0; /* Prevent the LINK from shrinking */
-            margin: 0 1rem; /* Apply margin to the LINK for spacing */
-            color: var(--text-color); /* Inherit text color or set specific */
-            text-decoration: none; /* Remove underline */
-        }
-
-        /* Style the SVG (icon) inside the carousel link */
-        /* .carousel-icon-link .link-icon { */
-            /* Width/Height are already set in the general .link-icon rule */
-            /* No margin needed here now, parent <a> handles it */
-        /* } */
-
-
+        
         @keyframes scroll {
             0% {
                 transform: translateX(0);
             }
             100% {
-                /* Translate by exactly half the wrapper's width */
-                transform: translateX(-50%);
+                transform: translateX(-50%); /* Solo se mueve la mitad para crear un loop perfecto */
             }
         }
         /* --- Fin Estilos Carrousel --- */
