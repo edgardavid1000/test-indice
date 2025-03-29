@@ -88,12 +88,19 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
+        /* General link icon style (used in cards AND carousel) */
         .link-icon {
             width: 24px;
             height: 24px;
-            margin-right: 1rem;
-            flex-shrink: 0; /* Evita que el icono se encoja */
+            flex-shrink: 0; /* Keep this on the SVG */
+            display: block; /* Helps prevent extra space below SVG */
         }
+
+        /* Specific margin for icons inside cards */
+        .link-card .link-icon {
+             margin-right: 1rem;
+        }
+
 
         .link-title {
             font-weight: 500;
@@ -182,12 +189,6 @@
         .hidden-field {
             position: absolute;
             left: -5000px; /* Mover fuera de la pantalla */
-            /* O alternativamente:
-            opacity: 0;
-            pointer-events: none;
-            height: 0;
-            width: 0;
-            */
         }
 
         /* Estilos del Footer */
@@ -199,52 +200,63 @@
             margin-top: 2rem; /* Añade espacio sobre el footer */
         }
 
-        /* Estilos para el carrusel de iconos */
+        /* --- Estilos para el carrusel de iconos --- */
         .icons-carousel {
             overflow: hidden;
             width: 100%;
             max-width: 600px; /* Igual al contenedor principal */
             margin-bottom: 2rem;
-            /* Optional: Add a subtle fade effect at the edges */
+             /* Optional fade effect */
             /* -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); */
             /* mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); */
         }
 
         .icons-wrapper {
             display: flex;
-            /* Add white-space: nowrap to prevent potential wrapping issues */
+            /* Ensure items don't wrap */
             white-space: nowrap;
-            /* Add will-change to hint browser about upcoming transform */
+            /* Hint browser for optimization */
             will-change: transform;
+            /* The animation */
             animation: scroll 20s linear infinite;
-            align-items: center; /* Asegura que los iconos estén a la misma altura */
+            /* Align items vertically if needed (shouldn't be necessary with identical SVGs) */
+            /* align-items: center; */
         }
 
-        /* Add pause on hover */
+        /* Pause animation on hover */
         .icons-carousel:hover .icons-wrapper {
             animation-play-state: paused;
         }
 
-
-        .icons-wrapper .link-icon {
-            width: 24px;
-            height: 24px;
-            margin: 0 1rem; /* Espaciado entre iconos */
-            flex-shrink: 0;
+        /* Style the LINK (<a>) within the carousel */
+        .carousel-icon-link {
+            display: inline-flex; /* Use inline-flex for the link */
+            align-items: center; /* Vertically center SVG inside link */
+            justify-content: center; /* Horizontally center SVG (optional) */
+            flex-shrink: 0; /* Prevent the LINK from shrinking */
+            margin: 0 1rem; /* Apply margin to the LINK for spacing */
+            color: var(--text-color); /* Inherit text color or set specific */
+            text-decoration: none; /* Remove underline */
         }
+
+        /* Style the SVG (icon) inside the carousel link */
+        /* .carousel-icon-link .link-icon { */
+            /* Width/Height are already set in the general .link-icon rule */
+            /* No margin needed here now, parent <a> handles it */
+        /* } */
+
 
         @keyframes scroll {
             0% {
                 transform: translateX(0);
             }
             100% {
-                /* This translates the wrapper exactly half its width to the left. */
-                /* Since the wrapper contains two identical sets of icons, */
-                /* this brings the start of the second set perfectly to where */
-                /* the first set started, creating the seamless loop. */
+                /* Translate by exactly half the wrapper's width */
                 transform: translateX(-50%);
             }
         }
+        /* --- Fin Estilos Carrousel --- */
+
     </style>
 </head>
 <body>
