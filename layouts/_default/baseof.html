@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,7 +16,6 @@
             --card-background: #ffffff;
             --input-border-color: #cbd5e1;
             --input-focus-border-color: var(--primary-color);
-            --animation-duration: 20s;
         }
 
         body {
@@ -75,7 +73,7 @@
         .link-card {
             background-color: var(--card-background);
             border-radius: 8px;
-            padding: 1rem;
+            padding: 0.5rem; /* Se redujo el padding para acortar el botón */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
@@ -83,7 +81,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            max-width: 100%; /* Ajustar el ancho máximo */
         }
 
         .link-card:hover {
@@ -91,32 +88,23 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
-        /* General link icon style (used in cards AND carousel) */
+        /* General link icon style */
         .link-icon {
             width: 24px;
             height: 24px;
-            flex-shrink: 0; /* Keep this on the SVG */
-            display: block; /* Helps prevent extra space below SVG */
+            flex-shrink: 0;
+            display: block;
+            margin-right: 1rem;
         }
-
-        /* Specific margin for icons inside cards */
-        .link-card .link-icon {
-             margin-right: 1rem;
-        }
-
 
         .link-title {
             font-weight: 500;
             flex-grow: 1;
-            white-space: nowrap; /* Evitar que el texto se rompa */
-            overflow: hidden; /* Ocultar texto que desborda */
-            text-overflow: ellipsis; /* Agregar ... si el texto es muy largo */
         }
 
         .link-arrow {
             color: var(--primary-color);
-            flex-shrink: 0; /* Evita que la flecha se encoja */
-            margin-left: 0.5rem; /* Espacio entre texto y flecha */
+            flex-shrink: 0;
         }
 
         /* Estilos de Contenido General (single.html) */
@@ -163,7 +151,7 @@
             border: 1px solid var(--input-border-color);
             border-radius: 4px;
             font-size: 1rem;
-            box-sizing: border-box; /* Asegura que padding no aumente el tamaño total */
+            box-sizing: border-box;
             transition: border-color 0.3s ease;
         }
         .form-netlify input[type="text"]:focus,
@@ -171,11 +159,11 @@
         .form-netlify textarea:focus {
             outline: none;
             border-color: var(--input-focus-border-color);
-            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2); /* Anillo de foco sutil */
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
         }
         .form-netlify textarea {
             min-height: 120px;
-            resize: vertical; /* Permite redimensionar verticalmente */
+            resize: vertical;
         }
         .form-netlify button[type="submit"] {
             background-color: var(--primary-color);
@@ -192,10 +180,9 @@
             background-color: var(--secondary-color);
         }
 
-        /* Estilo para ocultar el campo honeypot */
         .hidden-field {
             position: absolute;
-            left: -5000px; /* Mover fuera de la pantalla */
+            left: -5000px;
         }
 
         /* Estilos del Footer */
@@ -204,69 +191,38 @@
             padding: 1.5rem;
             font-size: 0.875rem;
             color: #64748b;
-            margin-top: 2rem; /* Añade espacio sobre el footer */
+            margin-top: 2rem;
         }
 
-        /* --- ANIMACIÓN LINEAL MEJORADA --- */
-        .icons-carousel {
+        /* --- Nuevo Carrusel Circular (ruleta) de Iconos --- */
+        .rotary-container {
             position: relative;
-            width: 100%;
-            height: 80px;
-            max-width: 600px;
+            width: 250px;
+            height: 250px;
             margin: 0 auto 2rem;
-            overflow: hidden;
         }
-
-        .linear-mode .carousel-track {
+        .icons-rotary {
             position: absolute;
+            top: 50%;
+            left: 50%;
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
+            transform-origin: center;
+            animation: rotate 20s linear infinite;
         }
-
-        .linear-animation {
-            display: flex;
+        .rotary-item {
             position: absolute;
-            animation: linearScroll var(--animation-duration) linear infinite;
-            white-space: nowrap;
+            width: 40px;
+            height: 40px;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 -100px;
         }
-
-        .carousel-icon-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            margin: 0 10px;
-            flex-shrink: 0;
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: transform 0.3s ease;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-
-        .carousel-icon-link:hover {
-            transform: scale(1.1);
-        }
-
-        /* Pausa animación al pasar el ratón */
-        .icons-carousel:hover .carousel-track-inner {
-            animation-play-state: paused;
-        }
-        
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%); /* Solo se mueve la mitad para crear un loop perfecto */
-            }
-        }
-        /* --- Fin Estilos Carrousel --- */
+        /* --- Fin Carrusel Circular --- */
 
     </style>
 </head>
@@ -278,3 +234,4 @@
     {{ partial "footer" . }}
 </body>
 </html>
+
