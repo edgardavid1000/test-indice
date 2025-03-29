@@ -25,6 +25,7 @@
         margin: 0 auto;
         padding: 2rem 1rem;
         flex-grow: 1;
+        position: relative; /* Para que los hijos absolutos se posicionen relativo a él */
     }
 
     /* Estilos de Profile (index.html) */
@@ -96,6 +97,8 @@
     /* Estilos para iconos animados */
     .animated-icon {
         position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         width: 24px;
         height: 24px;
         opacity: 0;
@@ -164,10 +167,10 @@
         margin-bottom: 0.8rem;
         color: var(--secondary-color);
     }
-     .content-body p {
+    .content-body p {
         line-height: 1.6;
         margin-bottom: 1rem;
-     }
+    }
 
     /* Estilos del Formulario (single.html) */
     .form-netlify {
@@ -225,15 +228,8 @@
     /* Estilo para ocultar el campo honeypot */
     .hidden-field {
         position: absolute;
-        left: -5000px; /* Mover fuera de la pantalla */
-        /* O alternativamente:
-        opacity: 0;
-        pointer-events: none;
-        height: 0;
-        width: 0;
-        */
+        left: -5000px;
     }
-
 
     /* Estilos del Footer */
     .footer {
@@ -241,6 +237,7 @@
         padding: 1.5rem;
         font-size: 0.875rem;
         color: #64748b;
-        margin-top: 2rem; /* Añade espacio sobre el footer */
+        margin-top: 2rem;
     }
 </style>
+
