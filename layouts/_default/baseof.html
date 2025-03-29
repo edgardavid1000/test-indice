@@ -190,7 +190,6 @@
             */
         }
 
-
         /* Estilos del Footer */
         .footer {
             text-align: center;
@@ -198,6 +197,36 @@
             font-size: 0.875rem;
             color: #64748b;
             margin-top: 2rem; /* Añade espacio sobre el footer */
+        }
+
+        /* Estilos para el carrusel de iconos */
+        .icons-carousel {
+            overflow: hidden;
+            width: 100%;
+            max-width: 600px; /* Igual al contenedor principal */
+            margin-bottom: 2rem;
+        }
+
+        .icons-wrapper {
+            display: flex;
+            animation: scroll 20s linear infinite;
+            align-items: center; /* Asegura que los iconos estén a la misma altura */
+        }
+
+        .icons-wrapper .link-icon {
+            width: 24px;
+            height: 24px;
+            margin: 0 1rem; /* Espaciado entre iconos */
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%); /* Mueve la mitad del contenedor para el bucle */
+            }
         }
     </style>
 </head>
