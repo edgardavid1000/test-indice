@@ -7,5 +7,5 @@ disableKinds = ["taxonomy", "term"]
 [params]
   description = "Herramientas profesionales para networking"
   author = "Networking Professional"
-  mainImage = "/images/profile-image.jpg"
-  favicon = "/images/favicon.png"
+  mainImage = "https://cdn.pixabay.com/photo/2018/05/08/08/44/artificial-intelligence-3382507_960_720.jpg"
+  favicon = "https://cdn.pixabay.com/photo/2016/12/18/13/45/download-1915753_960_720.png"
