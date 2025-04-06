@@ -6,18 +6,6 @@
   HUGO_VERSION = "0.145.0"
 
 [[redirects]]
-  from = "/images/profile-image.jpg"
-  to = "https://cdn.pixabay.com/photo/2018/05/08/08/44/artificial-intelligence-3382507_960_720.jpg"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/images/favicon.png"
-  to = "https://cdn.pixabay.com/photo/2016/12/18/13/45/download-1915753_960_720.png"
-  status = 200
-  force = true
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
