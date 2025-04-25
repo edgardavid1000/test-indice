@@ -13,7 +13,9 @@
     <meta property="og:url" content="{{ .Permalink }}" />
     <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
     <meta property="og:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
-    <meta property="og:image" content="{{ .Site.Params.mainImage }}" />
+    <meta property="og:image" content="{{ .Site.Params.socialImage }}" />
+    <meta property="og:image:width" content="{{ .Site.Params.socialImageWidth }}" />
+    <meta property="og:image:height" content="{{ .Site.Params.socialImageHeight }}" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="{{ .Site.Title }}" />
     
@@ -22,7 +24,7 @@
     <meta name="twitter:url" content="{{ .Permalink }}" />
     <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
     <meta name="twitter:description" content="{{ if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Description }}{{ end }}" />
-    <meta name="twitter:image" content="{{ .Site.Params.mainImage }}" />
+    <meta name="twitter:image" content="{{ .Site.Params.socialImage }}" />
     
     <style>
         :root {
