@@ -8,7 +8,7 @@ disableKinds = ["taxonomy", "term"]
   author = "Networking Professional"
   mainImage = "https://cdn.pixabay.com/photo/2018/05/08/08/44/artificial-intelligence-3382507_960_720.jpg"
   # URL absoluta para la imagen social
-  socialImage = "https://cdn.pixabay.com/photo/2015/12/04/14/05/code-1076536_1280.jpg"
+  socialImage = "https://cdn.pixabay.com/photo/2018/05/08/08/44/artificial-intelligence-3382507_960_720.jpg"
   favicon = "https://cdn.pixabay.com/photo/2016/12/18/13/45/download-1915753_960_720.png"
   socialImageWidth = "1200"
   socialImageHeight = "630"
